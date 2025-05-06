@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require("express")
-const sequelize = require("./config/database")
-const users = require("./models/users")
+const cors = require('cors')
+
+const users = require("./models/Users")
 const app = express()
-const PORT = 3000
+const PORT = 3001
 
+
+const { sequelize } = require('./models');
 app.use(express.json())
-
+app.use(cors());
 
 sequelize.sync()
     .then(()=>{
@@ -18,12 +22,17 @@ sequelize.sync()
         console.error('Error syncing the database : ', err)
     })
 
-app.use(express.json())
 
 
 app.get('/',(req,res)=>{
     res.send("expense app is running ..")
 })
+
+
+//routers
+const usersRouter = require("./routes/Users")
+app.use("/users",usersRouter)
+
 
 
 

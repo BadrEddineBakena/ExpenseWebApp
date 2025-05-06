@@ -8,6 +8,9 @@ const hashPassword = async (req, res, next) => {
         if (!password) {
             return res.status(400).json({ error: "password is required" })
         }
+        else if(password.length < 8){
+            return res.status(400).json({error:"The length of the password must be 8 or more"})
+        }
         const salt = await bcrypt.genSalt(10)
         req.body.password_hash = await bcrypt.hash(password, salt)
         delete req.body.password
