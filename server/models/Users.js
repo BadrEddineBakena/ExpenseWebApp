@@ -17,29 +17,45 @@ const Users = sequelize.define('Users', {
     unique: true,
   },
   email: {
-    type: DataTypes.STRING(50),  
+    type: DataTypes.STRING(255),
     allowNull: false,
     unique: true,
+    validate: { isEmail: true },
   },
   phoneNumber: {
     type: DataTypes.STRING(20), 
     unique: true,
   },
   age: {
-    type: DataTypes.INTEGER,  
-    allowNull: false,
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    validate: { min: 0 },
   },
   currency: {
     type: DataTypes.STRING(10),  
-    allowNull: false,
+    allowNull: true,
+    defaultValue: 'MAD'
   },
   password_hash: {
     type: DataTypes.STRING(255), 
     allowNull: false,
   },
+  resetToken: {
+    type: DataTypes.STRING(255),
+    allowNull: true,
+  },
+  resetTokenExpiry: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   created_at: {
     type: DataTypes.DATE,  
     defaultValue: DataTypes.NOW,
+  },
+  profileComplete: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
   },
 }, {
   timestamps: false,  
