@@ -18,6 +18,13 @@ const BudgetGoals = sequelize.define('BudgetGoals', {
   endDate: {
     type: DataTypes.DATEONLY,
     allowNull: false,
+    validate: {
+      isAfterStartDate(value) {
+        if (new Date(value) <= new Date(this.startDate)) {
+          throw new Error('endDate must be after startDate');
+        }
+      },
+    },
   },
   category: {
     type: DataTypes.STRING(50),
@@ -26,6 +33,11 @@ const BudgetGoals = sequelize.define('BudgetGoals', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: { model: 'Users', key: 'userID' },
+  },
+  currency: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+    defaultValue: 'MAD'
   },
 }, {
   timestamps: false,

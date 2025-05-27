@@ -27,6 +27,11 @@ const Expenses = sequelize.define('Expenses', {
     allowNull: false,
     references: { model: 'Users', key: 'userID' },
   },
+  currency: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+    defaultValue: 'MAD'
+  },
 }, {
   timestamps: false,
 });

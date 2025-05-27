@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "badreddine",
+    "password": "badr1234",
+    "database": "ExpenseApp",
+    "host": "localhost",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "badreddine",
+    "password": "badr1234",
+    "database": "ExpenseApp_test",
+    "host": "localhost",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "badreddine",
+    "password": "badr1234",
+    "database": "ExpenseApp",
+    "host": "localhost",
+    "dialect": "mariadb"
+  }
+} 
